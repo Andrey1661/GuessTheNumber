@@ -1,0 +1,46 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div id="app">
+    <div class="center-block">
+        <div>
+            <h4>Онлайн-игра "Угадай число"</h4>
+        </div>
+        <div v-bind:class="{ success: success }">
+            <h3>{{mask}}</h3>
+            <h3 v-if="success">{{hiddenNumber}}</h3>
+            <h4 v-if="gameStarted">Сделано попыток: {{attemptsCount}}</h4>
+        </div>
+        <div v-if="gameStarted && !success">
+            <input type="text" v-model="answer"/>
+            <div>
+                <button class="btn btn-success" v-on:click="postAnswer">Отправить</button>
+            </div>
+            <div v-if="error !== null">
+                <p class="text-danger">{{error}}</p>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" v-on:click="newGame">Новая игра</button>
+        </div>
+    </div>
+</div>
+    
+<link rel="stylesheet" href="~/Content/bootstrap.min.css"/>
+<link rel="stylesheet" href="~/Content/app.css"/>
+<script src="~/Scripts/axios.min.js"></script>
+<script src="~/Scripts/api.js"></script>
+<script src="~/Scripts/vue.min.js"></script>
+<script src="~/Scripts/App.js"></script>    
+
+</body>
+</html>
