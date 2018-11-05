@@ -43,7 +43,12 @@
 
             }).catch(error => {
                 var data = error.response.data;
-                this.error = data.ModelState["model.Answer"][0];
+
+                if (data != null && data.ModelState !== undefined) {
+                    this.error = data.ModelState["model.Answer"][0];
+                }
+
+                this.error = "Возникла непредвиденная ошибка";
             });
         }
     }
